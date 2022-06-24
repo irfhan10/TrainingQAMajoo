@@ -1,0 +1,14 @@
+<suite name="UsersSuite">
+    <test name="UsersTest">
+        <classes>
+            <class name="users.listuser"/>
+            <class name="users.singleuser"/>
+            <class name="users.createuser"/>
+            <class name="users.updateuser"/>
+            <class name="register.register_successful"/>
+            <class name="register.register_unsuccessful"/>
+            <class name="auth.login_successful"/>
+            <class name="auth.login_unsuccessful"/>
+        </classes>
+    </test>
+</suite>
