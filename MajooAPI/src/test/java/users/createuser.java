@@ -1,12 +1,14 @@
 package users;
 
 import io.restassured.RestAssured;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.hamcrest.core.Is;
 import org.json.JSONObject;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
+
+import java.io.File;
 
 import static io.restassured.RestAssured.given;
 
@@ -24,10 +26,11 @@ public class createuser {
         request.header("Content-Type", "application/json");
 
         Response response = request.post("/api/users");
+        String schemaPath = "src/resources/createuserschemas.json";
+
         response.then().assertThat()
                 .statusCode(201)
-                .body("name", Is.is("qwerty"))
-                .body("job", Is.is("quality assurance"));
+                .body(JsonSchemaValidator.matchesJsonSchema(new File(schemaPath)));
         System.out.println(response.asString());
     }
 }
